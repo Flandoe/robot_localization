@@ -1,0 +1,22 @@
+<launch>
+ <!-- imu_link to gps -->
+ <node pkg="tf2_ros" type="static_transform_publisher" name="TF_imu2gps" args="-0.01 0.0 0.32 0.0 0.0 0.0 1.0 imu_link gps"/><!-- x y z qx qy qz qw -->
+  <!--EKF-->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
+    <rosparam command="load" file="$(find robot_localization)/params/my_ekf.yaml" />
+    <!-- <remap from="odometry/filtered" to="odometry/gps"/> -->
+    <!--  Placeholder for output topic remapping    
+    <remap from="accel/filtered" to=""/>
+    -->
+  </node>
+  <!--GPS-->
+  <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform_node" clear_params="true">
+    <rosparam command="load" file="$(find robot_localization)/params/my_navsat_transform.yaml" />
+      <!-- Placeholders for input remapping. Set your topic names as the "to" values.-->
+      <remap from="imu/data" to="imu_raw"/>
+      <!-- <remap from="odometry/filtered" to="odometry/gps"/> -->
+      <remap from="gps/fix" to="gnss_fix"/>
+  </node>
+  <!--- Run Rviz-->
+    <node pkg="rviz" type="rviz" name="RobotLocalization_rviz" args="-d $(find robot_localization)/params/RobotLocalization.rviz" />
+</launch>
