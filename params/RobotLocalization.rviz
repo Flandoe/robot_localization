@@ -7,7 +7,6 @@ Panels:
         - /Global Options1
         - /Status1
         - /Odometry1
-        - /Odometry1/Shape1
         - /Odometry2
       Splitter Ratio: 0.5
     Tree Height: 719
@@ -162,10 +161,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 22.9511661529541
+      Scale: 14.430787086486816
       Target Frame: <Fixed Frame>
-      X: -0.7934979796409607
-      Y: -0.7797656655311584
+      X: 13.832262992858887
+      Y: 0.0077431052923202515
     Saved: ~
 Window Geometry:
   Displays:
